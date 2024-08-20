@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      span {
+        width: 100px;
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <span>請輸入身高</span>
+    <input type="number" class="height" placeholder="請輸入cm單位" /><br />
+    <span>請輸入體重</span>
+    <input type="number" class="weight" placeholder="請輸入kg單位" /><br />
+    <span>您的BMI為</span>
+    <input type="text" class="bmi" disabled placeholder="" /><br />
+    <span>評估</span>
+    <input type="text" class="evaluate" disabled placeholder="" /><br />
+
+    <script>
+      const height = document.querySelector(".height");
+      const weight = document.querySelector(".weight");
+      const bmi = document.querySelector(".bmi");
+      const eva = document.querySelector(".evaluate");
+      height.addEventListener("change", () => {
+        if (height.value < 0 || height.value > 300) {
+          alert("請輸入真實身高");
+          height.value = "";
+          height.focus();
+        }
+      });
+      weight.addEventListener("input", function () {
+        if (weight.value < 0 || weight.value > 700) {
+          alert("請輸入真實體重");
+          weight.value = "";
+          weight.focus();
+        }
+
+        const userBMI = this.value / (height.value / 100) ** 2;
+        bmi.placeholder = userBMI.toFixed(1);
+        if (userBMI < 18.5) {
+          eva.placeholder = "過輕";
+        } else if (userBMI >= 18.5 && userBMI < 24) {
+          eva.placeholder = "正常";
+        } else if (userBMI >= 24 && userBMI < 27) {
+          eva.placeholder = "過重";
+        } else if (userBMI >= 27 && userBMI < 30) {
+          eva.placeholder = "輕度肥胖";
+        } else if (userBMI >= 30 && userBMI < 35) {
+          eva.placeholder = "中度肥胖";
+        } else {
+          eva.placeholder = "重度肥胖";
+        }
+      });
+    </script>
+  </body>
+</html>
