@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" class="degree" oninput="degreeChange()" />
+    <select type="text" class="degreeType">
+      <option value="degreeC">攝氏</option>
+      <option value="degreeF">華氏</option>
+    </select>
+    <br />
+    <input type="text" class="degreeOutput" disabled placeholder="" />
+    <script>
+      const degreeInput = document.querySelector(".degree");
+      const degreeTypeInput = document.querySelector(".degreeType");
+      const degreeOutput = document.querySelector(".degreeOutput");
+      const degreeChange = (d) => {
+        degreeOutput.placeholder = "";
+        const degree = Number(degreeInput.value);
+        const degreeType = degreeTypeInput.value;
+
+        if (degreeType === "degreeC") {
+          degreeOutput.placeholder = (degree * (9 / 5) + 32).toFixed(1) + "℉";
+        } else {
+          degreeOutput.placeholder = ((degree - 32) * (5 / 9)).toFixed(1) + "℃";
+        }
+      };
+    </script>
+  </body>
+</html>
