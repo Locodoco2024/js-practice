@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label>出生年份</label>
+    <select name="year" class="year">
+      <option value="" disabled selected>請選擇</option>
+    </select>
+    <br />
+
+    <label>出生月份</label>
+    <select name="month" class="month">
+      <option value="" disabled selected>請選擇</option>
+    </select>
+    <br />
+
+    <label>出生日期</label>
+    <select name="date" class="date">
+      <option value="" disabled selected>請選擇</option>
+    </select>
+    <br />
+
+    <label>您目前為</label>
+    <input type="text" disabled style="width: 60px" />歲實歲
+    <script>
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = today.getMonth() + 1;
+      const date = today.getDate();
+
+      const yearSelect = document.querySelector(".year");
+      const monthSelect = document.querySelector(".month");
+      const dateSelect = document.querySelector(".date");
+      const result = document.querySelector("input");
+      for (let i = year; i >= 1900; i--) {
+        const o = document.createElement("option");
+        o.innerHTML = i;
+        o.value = i;
+        yearSelect.append(o);
+      }
+      for (let i = 1; i < 13; i++) {
+        const m = document.createElement("option");
+        m.innerHTML = i;
+        m.value = i;
+        monthSelect.append(m);
+      }
+      let age;
+      yearSelect.addEventListener("change", updateDate);
+      monthSelect.addEventListener("change", updateDate);
+      dateSelect.addEventListener("change", () => {
+        if (month - monthSelect.value >= 0 && date - dateSelect.value >= 0) {
+          age = year - yearSelect.value;
+          result.placeholder = age;
+        } else {
+          age = year - yearSelect.value - 1;
+          result.placeholder = age;
+        }
+      });
+
+      function updateDate() {
+        dateSelect.innerHTML = `<option value="" disabled selected>請選擇</option>`;
+        if (yearSelect.value && monthSelect.value) {
+          const days = getDays(yearSelect.value, monthSelect.value);
+          for (let i = 1; i <= days; i++) {
+            const d = document.createElement("option");
+            d.innerHTML = i;
+            d.value = i;
+            dateSelect.append(d);
+          }
+        }
+      }
+      function getDays(year, month) {
+        return new Date(year, month, 0).getDate();
+      }
+    </script>
+  </body>
+</html>
