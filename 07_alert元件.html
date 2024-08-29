@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .alert {
+        width: 400px;
+        padding: 20px;
+        position: relative;
+      }
+
+      .alert > button {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        font-size: 20px;
+        padding: 0px 1px;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .alert-question {
+        background-color: rgb(241, 241, 241);
+        border: 1px solid gray;
+        border-radius: 10px;
+        color: gray;
+      }
+
+      .alert-success {
+        background-color: rgb(177, 239, 177);
+        border: 1px solid green;
+        border-radius: 10px;
+        color: green;
+      }
+
+      .alert-error {
+        background-color: rgb(252, 193, 193);
+        border: 1px solid red;
+        border-radius: 10px;
+        color: red;
+      }
+
+      .alert-warning {
+        background-color: rgb(255, 235, 198);
+        border: 1px solid orange;
+        border-radius: 10px;
+        color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="alert alert-question">
+      <p>確認是否執行動作訊息。</p>
+      <button class="close">×</button>
+    </div>
+    <hr />
+    <div class="alert alert-success">
+      <p>成功訊息。</p>
+      <button class="close">×</button>
+    </div>
+    <hr />
+    <div class="alert alert-error">
+      <p>錯誤訊息。</p>
+      <button class="close">×</button>
+    </div>
+    <hr />
+    <div class="alert alert-warning">
+      <p>警示訊息。</p>
+      <button class="close">×</button>
+    </div>
+    <script>
+      document.querySelectorAll(".alert").forEach((alert) => {
+        alert.querySelector("button").addEventListener("click", (e) => {
+          e.currentTarget.parentElement.remove();
+        });
+      });
+    </script>
+  </body>
+</html>

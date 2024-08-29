@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <label for="">設定密碼：</label>
+    <input type="password" class="password" /><i
+      class="fa-solid fa-eye-slash seePassword"
+      style="cursor: pointer"
+    ></i>
+    <span style="margin-left: 10px; color: rgb(46, 144, 19)"
+      >密碼需包含至少 8 位的半形字母、數字和 !@#$%^&* 中的符號
+    </span>
+    <div style="color: red"></div>
+    <script>
+      const passwordInput = document.querySelector(".password");
+      const passwordError = document.querySelector("div");
+
+      passwordInput.addEventListener("input", () => {
+        const password = passwordInput.value;
+        const requirements = [];
+        const allowedSymbols = "!@#$%^&*";
+
+        if (password === "") {
+          passwordError.textContent = "";
+          return;
+        }
+
+        if (!/^[A-Za-z\d!@#$%^&*]+$/.test(password)) {
+          requirements.push("包含不符規則的文字");
+        }
+
+        if (!/[A-Z]/.test(password)) {
+          requirements.push("需要一個大寫字母");
+        }
+
+        if (!/[a-z]/.test(password)) {
+          requirements.push("需要一個小寫字母");
+        }
+
+        if (!/\d/.test(password)) {
+          requirements.push("需要一個數字");
+        }
+
+        if (!/[!@#$%^&*]/.test(password)) {
+          requirements.push("需要一個符號");
+        }
+
+        if (password.length < 8) {
+          requirements.push("至少 8 個字");
+        }
+
+        if (requirements.length > 0) {
+          passwordError.textContent = `密碼${requirements.join("、")}。`;
+        } else {
+          passwordError.textContent = ""; // 密碼符合所有要求時清空錯誤信息
+        }
+      });
+
+      const seePassword = document.querySelector(".seePassword");
+
+      seePassword.addEventListener("click", () => {
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          seePassword.classList.add("fa-eye");
+          seePassword.classList.remove("fa-eye-slash");
+        } else {
+          passwordInput.type = "password";
+          seePassword.classList.add("fa-eye-slash");
+          seePassword.classList.remove("fa-eye");
+        }
+      });
+    </script>
+  </body>
+</html>

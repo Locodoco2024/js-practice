@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid black;
+      }
+      .carousel {
+        background-color: #adadad;
+        border: 1px solid black;
+        width: 600px;
+        height: 300px;
+      }
+      .btn {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        background-color: #adadad;
+        margin: 0 20px;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="btn btn-back">&#060;</div>
+      <div class="carouselBox"></div>
+      <div class="btn btn-next">&#062;</div>
+    </div>
+    <script>
+      const data = [
+        {
+          url: "https://www.kpopn.com/upload/fa639a8e1ae64ce8f2c0.jpg",
+          name: "Twice Fancy Cover",
+        },
+        {
+          url: "https://cdn1.wishnote.tw/200/2018/04/24/200_91441_1524554375.jpeg",
+          name: "Twice What is Love MV",
+        },
+        {
+          url: "https://img.ltn.com.tw/Upload/ent/page/800/2021/11/06/phpqJ2lIs.jpg",
+          name: "Twice Formula of Love Cover",
+        },
+        {
+          url: "https://static.popdaily.com.tw/u/202109/4b573e45-9586-41e7-bd5d-c391bbfb2a60.jpg",
+          name: "Twice The Feels Cover",
+        },
+        {
+          url: "https://thebiaslistcom.files.wordpress.com/2024/02/twice-i-got-you.jpeg",
+          name: "Twice I Got You Cover",
+        },
+      ];
+
+      const carouselBox = document.querySelector(".carouselBox");
+      for (let i = 0; i < data.length; i++) {
+        console.log(data[i].url);
+        const d = document.createElement("div");
+        const p = document.createElement("img");
+        p.src = data[i].url;
+      }
+    </script>
+  </body>
+</html>
