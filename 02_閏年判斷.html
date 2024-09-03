@@ -6,7 +6,12 @@
     <title>Document</title>
   </head>
   <body>
-    <input type="number" class="year" placeholder="請輸入西元年份" /><br />
+    <input
+      type="number"
+      class="year"
+      placeholder="請輸入西元年份"
+      min="0"
+    /><br />
     <input type="text" class="result" placeholder="" disabled />
     <button>送出</button>
     <script>
@@ -15,7 +20,7 @@
       const result = document.querySelector(".result");
       btn.addEventListener("click", () => {
         const years = Number(year.value);
-        if (years < 0 || !Number.isInteger(years)) {
+        if (years < 0 || !Number.isInteger(years) || year.value == "") {
           alert("請輸入整數");
           year.value = "";
           year.focus();

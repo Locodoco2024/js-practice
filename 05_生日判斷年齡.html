@@ -48,17 +48,29 @@
         m.value = i;
         monthSelect.append(m);
       }
-      let age;
       yearSelect.addEventListener("change", updateDate);
       monthSelect.addEventListener("change", updateDate);
       dateSelect.addEventListener("change", () => {
-        if (month - monthSelect.value >= 0 && date - dateSelect.value >= 0) {
+        if (
+          year < yearSelect.value ||
+          (year == yearSelect.value && month < monthSelect.value) ||
+          (year == yearSelect.value &&
+            month == monthSelect.value &&
+            date < dateSelect.value)
+        ) {
+          result.placeholder = "未出生";
+          return;
+        }
+        let age;
+        if (
+          month > monthSelect.value ||
+          (month == monthSelect.value && date >= dateSelect.value)
+        ) {
           age = year - yearSelect.value;
-          result.placeholder = age;
         } else {
           age = year - yearSelect.value - 1;
-          result.placeholder = age;
         }
+        result.placeholder = age;
       });
 
       function updateDate() {
